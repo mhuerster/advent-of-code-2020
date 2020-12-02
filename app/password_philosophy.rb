@@ -1,8 +1,8 @@
 class PasswordPhilosophy
-  class Password < Struct.new(:min, :max, :target, :password); end
+  class Password < Struct.new(:pos1, :pos2, :target, :password); end
   attr_reader :input_filename
-  MIN = /\A\d+/.freeze
-  MAX = /-(\d+)/.freeze
+  FIRST_POSITION = /\A\d+/.freeze
+  SECOND_POSITION = /-(\d+)/.freeze
   TARGET_LETTER = /\d\s([a-z])/.freeze
   PASSWORD = /:\s+(.*)\z/.freeze
 
@@ -17,13 +17,13 @@ class PasswordPhilosophy
   def valid?(input_string)
     rules = parse(input_string)
 
-    (rules.min..rules.max).cover?(rules.password.count(rules.target))
+    (rules.password[rules.pos1] == rules.target) ^ (rules.password[rules.pos2] == rules.target)
   end
 
   def parse(input_string)
     Password.new(
-      min(input_string),
-      max(input_string),
+      pos1(input_string),
+      pos2(input_string),
       target(input_string),
       password(input_string),
     )
@@ -31,12 +31,12 @@ class PasswordPhilosophy
 
   private
 
-  def min(input_string)
-    input_string.scan(MIN).flatten.first.to_i
+  def pos1(input_string)
+    input_string.scan(FIRST_POSITION).flatten.first.to_i - 1
   end
 
-  def max(input_string)
-    input_string.scan(MAX).flatten.first.to_i
+  def pos2(input_string)
+    input_string.scan(SECOND_POSITION).flatten.first.to_i - 1
   end
 
   def target(input_string)
