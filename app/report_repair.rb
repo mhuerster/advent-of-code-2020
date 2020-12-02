@@ -1,14 +1,15 @@
 # Problem: https://adventofcode.com/2020/day/1
-# Given a list of positive integers, find the two entries that sum to 2020
-# Return the product of those two integers
+# Given a list of positive integers, find the n entries that sum to 2020
+# Return the product of those integers
 
 class ReportRepair
-  attr_reader :report_filename
+  attr_reader :report_filename, :number_of_target_entries, :report_eof
 
   SUM_TARGET = 2020.freeze
 
-  def initialize(report_filename)
+  def initialize(report_filename, number_of_target_entries)
     @report_filename = report_filename
+    @number_of_target_entries = number_of_target_entries
   end
 
   def run
@@ -16,16 +17,12 @@ class ReportRepair
   end
 
   def entries
-    IO.foreach(report_filename) do |left_line|
-      left_addend = left_line.to_i
-      next if left_addend > SUM_TARGET
+    report.combination(number_of_target_entries).find { |comb| comb.inject(:+) == SUM_TARGET }
+  end
 
-      IO.foreach(report_filename) do |right_line|
-        right_addend = right_line.to_i
-        if left_addend + right_addend == SUM_TARGET
-          return [left_addend, right_addend]
-        end
-      end
-    end
+  private
+
+  def report
+    @report ||= File.readlines(report_filename).map(&:to_i)
   end
 end

@@ -6,20 +6,39 @@ require_relative '../app/report_repair'
 
 RSpec.describe ReportRepair do
   let(:report_filename) { 'spec/fixtures/report_repair/test.txt' }
-  let(:instance) { described_class.new(report_filename) }
-  let(:given_entries) { [1721, 299] }
-  let(:given_product) { 514579 }
+  let(:number_of_target_entries) { 2 }
+  let(:instance) { described_class.new(report_filename, number_of_target_entries) }
 
   describe 'entries' do
     subject(:entries) { instance.entries }
 
-    it { is_expected.to match_array(given_entries) }
+    context 'for two target entries' do
+      let(:given_entries) { [1721, 299] }
+
+      it { is_expected.to match_array(given_entries) }
+    end
+
+    context 'for three target entries' do
+      let(:number_of_target_entries) { 3 }
+      let(:given_entries) { [979, 366, 675] }
+
+      it { is_expected.to match_array(given_entries) }
+    end
   end
 
   describe 'run' do
     subject(:product) { instance.run }
 
-    context 'with given input' do
+    context 'for two target entries' do
+      let(:given_product) { 514579 }
+
+      it { is_expected.to eq(given_product) }
+    end
+
+    context 'for three target entries' do
+      let(:number_of_target_entries) { 3 }
+      let(:given_product) { 241861950 }
+
       it { is_expected.to eq(given_product) }
     end
   end
