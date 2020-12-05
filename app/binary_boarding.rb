@@ -42,7 +42,16 @@ class BinaryBoarding
   end
 end
 
-# Driver code
-#boarding_passes = File.readlines('spec/fixtures/binary_boarding/input.txt', chomp: true)
-#decoder = BinaryBoarding.new
-#boarding_passes.map { |bp| BinaryBoarding.seat_id(bp) }.max
+# Part 1 driver code
+boarding_passes = File.readlines('spec/fixtures/binary_boarding/input.txt', chomp: true)
+decoder = BinaryBoarding.new
+seat_ids = boarding_passes.map { |bp| BinaryBoarding.seat_id(bp) }
+seat_ids.max
+
+# Part 2 driver code
+max_actual_seat_id = seat_ids.max
+min_actual_seat_id = seat_ids.min
+sorted_seat_ids = seat_ids.sort
+offset = min_actual_seat_id
+
+(min_actual_seat_id..max_actual_seat_id).find { |seat_id| sorted_seat_ids[seat_id - offset] != seat_id }
