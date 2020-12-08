@@ -1,9 +1,10 @@
 class PassportProcessing
   attr_reader :batch_filename
+
   class Field < Struct.new(:code, :validator); end
 
   PASSPORT_SEPARATOR = "\n\n".freeze
-  FIELD_SEPARATOR    = ":".freeze
+  FIELD_SEPARATOR    = ':'.freeze
 
   BIRTH_YEAR      = Field.new('byr', :valid_birth_year?).freeze
   ISSUE_YEAR      = Field.new('iyr', :valid_issue_year?).freeze
@@ -62,9 +63,10 @@ class PassportProcessing
   # If in, the number must be at least 59 and at most 76.
   def valid_height?(str)
     value, unit = str.scan(/(\d+)(cm|in)/).flatten
-    if unit == 'cm'
+    case unit
+    when 'cm'
       (150..193).cover?(value.to_i)
-    elsif unit == 'in'
+    when 'in'
       (59..76).cover?(value.to_i)
     else
       false
@@ -78,7 +80,7 @@ class PassportProcessing
 
   # ecl (Eye Color) - exactly one of: amb blu brn gry grn hzl oth.
   def valid_eye_color?(str)
-    %w(amb blu brn gry grn hzl oth).include?(str)
+    %w[amb blu brn gry grn hzl oth].include?(str)
   end
 
   # pid (Passport ID) - a nine-digit number, including leading zeroes.
@@ -89,7 +91,9 @@ class PassportProcessing
   private
 
   # cid (Country ID) - ignored, missing or not.
-  def valid_country_id?(str); true; end
+  def valid_country_id?(_str)
+    true
+  end
 
   # Each passport is represented as a sequence of key:value pairs separated by spaces or newlines.
   def passport_data_hash(passport_string)

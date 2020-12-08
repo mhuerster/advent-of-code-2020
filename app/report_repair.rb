@@ -5,7 +5,7 @@
 class ReportRepair
   attr_reader :report_filename, :number_of_target_entries, :report_eof
 
-  SUM_TARGET = 2020.freeze
+  SUM_TARGET = 2020
 
   def initialize(report_filename, number_of_target_entries)
     @report_filename = report_filename

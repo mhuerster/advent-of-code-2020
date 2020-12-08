@@ -1,6 +1,7 @@
 class PasswordPhilosophy
   class Password < Struct.new(:pos1, :pos2, :target, :password); end
   attr_reader :input_filename
+
   FIRST_POSITION = /\A\d+/.freeze
   SECOND_POSITION = /-(\d+)/.freeze
   TARGET_LETTER = /\d\s([a-z])/.freeze

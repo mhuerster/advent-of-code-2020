@@ -13,7 +13,7 @@ class HandyHaversacks
 
   def parse_rules
     File.readlines(input_filename, chomp: true).each do |line|
-      container =  CONTAINER.match(line)[1].strip
+      container = CONTAINER.match(line)[1].strip
       contents = line.scan(CONTENTS)
 
       rules[container] = {} unless rules.key?(container)
@@ -24,7 +24,7 @@ class HandyHaversacks
   end
 
   def containers(target_color)
-    direct = rules.select { |k, v| v.key?(target_color) }.keys
+    direct = rules.select { |_k, v| v.key?(target_color) }.keys
     return direct if direct.empty?
 
     (direct + direct.map { |color| containers(color) }.flatten).uniq
@@ -36,7 +36,7 @@ class HandyHaversacks
 
     contents.reduce(0) do |sum, pair|
       color, count = pair
-      sum + count + contents_count(color)*count
+      sum + count + contents_count(color) * count
     end
   end
 end
