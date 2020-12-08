@@ -1,0 +1,55 @@
+require: rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+Layout/LineLength:
+  Enabled: true
+  Max: 120
+  IgnoredPatterns: ['^(\s*#).+$']
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Naming/MethodParameterName:
+  Enabled: false
+
+RSpec/ContextWording:
+  Prefixes:
+    - for
+    - given
+    - if
+    - unless
+    - when
+    - with
+    - without
+
+RSpec/NestedGroups:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/StructInheritance:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: consistent_comma
