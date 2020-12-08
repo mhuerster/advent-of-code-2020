@@ -30,14 +30,14 @@ RSpec.describe ReportRepair do
     subject(:product) { instance.run }
 
     context 'for two target entries' do
-      let(:given_product) { 514579 }
+      let(:given_product) { 514_579 }
 
       it { is_expected.to eq(given_product) }
     end
 
     context 'for three target entries' do
       let(:number_of_target_entries) { 3 }
-      let(:given_product) { 241861950 }
+      let(:given_product) { 241_861_950 }
 
       it { is_expected.to eq(given_product) }
     end

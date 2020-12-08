@@ -17,10 +17,10 @@ class HandheldHalting
     instruction = instructions[idx]
     case instruction[:operation]
     when NOOP
-      idx +=1
+      idx += 1
     when ACC
       acc += instruction[:arg].to_i
-      idx +=1
+      idx += 1
     when JUMP
       idx += instruction[:arg].to_i
     end

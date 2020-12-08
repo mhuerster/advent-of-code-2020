@@ -17,5 +17,5 @@ end
 
 # Driver code
 
-#CustomCustoms.run('spec/fixtures/custom_customs/test.txt')
-#CustomCustoms.run('spec/fixtures/custom_customs/actual.txt')
+# CustomCustoms.run('spec/fixtures/custom_customs/test.txt')
+# CustomCustoms.run('spec/fixtures/custom_customs/actual.txt')
