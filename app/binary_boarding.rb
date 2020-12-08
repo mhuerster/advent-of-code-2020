@@ -43,7 +43,6 @@ end
 
 # Part 1 driver code
 boarding_passes = File.readlines('spec/fixtures/binary_boarding/input.txt', chomp: true)
-decoder = BinaryBoarding.new
 seat_ids = boarding_passes.map { |bp| BinaryBoarding.seat_id(bp) }
 seat_ids.max
 

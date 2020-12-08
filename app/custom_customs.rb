@@ -10,7 +10,7 @@ class CustomCustoms
     end
 
     def count_all_yeses(group)
-      group.reduce(group.first) { |all_yeses, person| all_yeses = (all_yeses & person) }.count
+      group.reduce(group.first) { |all_yeses, person| (all_yeses & person) }.count
     end
   end
 end

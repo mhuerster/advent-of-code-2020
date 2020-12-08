@@ -1,7 +1,10 @@
 class HandheldHalting
   attr_reader :input_filename
 
+  # Only need named capture groups; intentionally ignoring others
+  # rubocop:disable Lint/MixedRegexpCaptureTypes
   INSTRUCTION_MATCHER = /(?<operation>\w{3})\s(?<arg>(\+|-)\d+)/.freeze
+  # rubocop:enable Lint/MixedRegexpCaptureTypes
   NOOP = 'nop'.freeze
   ACC = 'acc'.freeze
   JUMP = 'jmp'.freeze
@@ -10,6 +13,7 @@ class HandheldHalting
     @input_filename = input_filename
   end
 
+  # rubocop:disable Metrics/MethodLength
   def execute_instructions(idx = 0, acc = 0, executed = [])
     return acc if executed.include?(idx)
 
@@ -27,6 +31,7 @@ class HandheldHalting
 
     execute_instructions(idx, acc, executed)
   end
+  # rubocop:enable Metrics/MethodLength
 
   private
 

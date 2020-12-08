@@ -44,7 +44,6 @@ RSpec.describe BinaryBoarding do
       {
         'RLR' => 5,
         'RRR' => 7,
-        'RRR' => 7,
         'RLL' => 4,
       }.each do |str, expected_column|
         context "given #{str}" do
