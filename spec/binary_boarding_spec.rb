@@ -6,12 +6,13 @@ RSpec.describe BinaryBoarding do
 
     {
       'FBFBBFFRLR' => 357,
-      'BFFFBBFRRR' =>  567,
-      'FFFBBBFRRR' =>  119,
-      'BBFFBBFRLL' =>  820,
+      'BFFFBBFRRR' => 567,
+      'FFFBBBFRRR' => 119,
+      'BBFFBBFRLL' => 820,
     }.each do |str, expected_seat_id|
       context "given #{str}" do
         let(:test_string) { str }
+
         it { is_expected.to eq(expected_seat_id) }
       end
     end
@@ -31,6 +32,7 @@ RSpec.describe BinaryBoarding do
       }.each do |str, expected_row|
         context "given #{str}" do
           let(:test_string) { str }
+
           it { is_expected.to eq(expected_row) }
         end
       end
@@ -47,12 +49,14 @@ RSpec.describe BinaryBoarding do
       }.each do |str, expected_column|
         context "given #{str}" do
           let(:test_string) { str }
+
           it { is_expected.to eq(expected_column) }
         end
       end
 
       context 'given RLR' do
         let(:test_string) { 'RLR' }
+
         it { is_expected.to eq(5) }
       end
       # BFFFBBFRRR: row 70, column 7, seat ID 567.
